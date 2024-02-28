@@ -1,15 +1,14 @@
 import { Router } from "express";
+import { logout, profile, signin, signup } from "../controllers/auth.controller.js";
 
 const router = Router();
 
-router.post("/signin", (req, res) => res.send('Ingresando a la app'));
+router.post("/signin", signin);
 
-router.post("/signup", (req, res) => res.send('Registrandose en la app'));
+router.post("/signup", signup);
 
-router.post("/logout", (req, res) => res.send('cerrando sesion en la app'));
+router.post("/logout", logout);
 
-router.get("/profile", (req, res) => res.send('Perfil del usuario'));
-
-
+router.get("/profile", profile);
 
 export default router;
