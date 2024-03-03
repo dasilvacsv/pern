@@ -1,4 +1,3 @@
-import md5 from "md5";
 import { pool } from "../db.js";
 md5
 
