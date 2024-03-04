@@ -1,5 +1,5 @@
 import { pool } from "../db.js";
-md5
+
 
 export const getAllTasks = async (req, res, next) => {
   console.log(req.userId);
