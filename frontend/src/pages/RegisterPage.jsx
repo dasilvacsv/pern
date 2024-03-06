@@ -1,23 +1,24 @@
 import { useForm } from "react-hook-form";
 import { Button, Card, Input, Label } from "./../components/ui";
-import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./../context/AuthContext"
 
+// Funcion Register Page
 function RegisterPage() {
   const {
+    // extraigo las propiedads del hook useForm
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  // extraigo la funcion signup del hook useAuth de authContext
+  const {signup} = useAuth()
+  // extraigo la funcion navigate del hook useNavigate de react router dom
+  const navigate = useNavigate()
+  // Funcion onSubmit, que extrae los datos del formulario y los envia a la funcion signup que utiliza el auth Context
   const onSubmit = async (data) => {
-    const res = await axios.post('http://localhost:80/api/signup', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    });
-    console.log(res);
+    await signup(data)
+    navigate('/profile')
   };
 
   return (

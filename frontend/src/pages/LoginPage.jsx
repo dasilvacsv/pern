@@ -1,13 +1,17 @@
 import React from 'react'
 import {Card, Button, Input, Label} from './../components/ui'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import {useAuth} from "./../context/AuthContext"
 
 function LoginPage() {
   const { register, handleSubmit} = useForm()
+  const {signin} = useAuth()
+  const navigate = useNavigate()
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data)
+  const onSubmit = handleSubmit(async(data) => {
+    await signin(data)
+    navigate('/profile')
   })
 
   return (
