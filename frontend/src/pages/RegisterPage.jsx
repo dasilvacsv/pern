@@ -12,18 +12,29 @@ function RegisterPage() {
     formState: { errors },
   } = useForm();
   // extraigo la funcion signup del hook useAuth de authContext
-  const {signup} = useAuth()
+  const {signup, errors : signupErrors} = useAuth()
   // extraigo la funcion navigate del hook useNavigate de react router dom
   const navigate = useNavigate()
   // Funcion onSubmit, que extrae los datos del formulario y los envia a la funcion signup que utiliza el auth Context
   const onSubmit = async (data) => {
-    await signup(data)
-    navigate('/profile')
+    const user = await signup(data)
+    if (user !== false) {
+      navigate('/profile')
+    }
   };
-
   return (
     <div className="h-[calc(100vh-64px)] flex items-center justify-center">
       <Card>
+      {
+          signupErrors && (
+            signupErrors.map(err => (
+              <p className='bg-red-600
+               text-white text-center p-1'>
+                {err}
+              </p>
+            ))
+          )
+        }
         <h3 className="text-2xl font-bold text-yellow-500">Register</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Label htmlFor="username">
