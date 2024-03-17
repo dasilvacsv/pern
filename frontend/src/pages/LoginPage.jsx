@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Button, Input, Label} from './../components/ui'
+import {Card, Button, Input, Label, Container} from './../components/ui'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import {useAuth} from "./../context/AuthContext"
@@ -18,7 +18,7 @@ function LoginPage() {
   })
 
   return (
-    <div className='h-[calc(100vh-64px)] flex justify-center items-center'>
+    <Container className='h-[calc(100vh-10rem)] flex justify-center items-center'>
       <Card>
         {
           errors && (
@@ -51,11 +51,11 @@ function LoginPage() {
             Sign In
           </Button>
           <div className='flex justify-between my-4'>
-            <p>Don't have an acount? <Link to='/register' className='font-bold'>Register</Link></p>
+            <p>Dont have an acount? <Link to='/register' className='font-bold'>Register</Link></p>
           </div>
         </form>
       </Card>
-    </div>
+    </Container>
   )
 }
 
