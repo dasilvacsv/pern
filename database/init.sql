@@ -5,6 +5,8 @@ CREATE TABLE task(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Remove unique from title
+ALTER TABLE task DROP CONSTRAINT task_title_key;
 
 ALTER TABLE task ADD COLUMN user_id INTEGER REFERENCES users(id);
 

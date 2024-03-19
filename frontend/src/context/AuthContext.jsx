@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
   const [errors, setErrors] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const signup = async (data) => {
     try {
@@ -55,17 +56,20 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
+    setLoading(true);
     if (Cookie.get("token"));
     axios
       .get("/profile")
       .then((res) => {
         setUser(res.data);
         setIsAuth(true);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setIsAuth(false);
         setUser(null);
+        setLoading(false);
       });
   }, []);
   return (
@@ -76,7 +80,8 @@ export function AuthProvider({ children }) {
         errors,
         signup,
         signin,
-        signout
+        signout,
+        loading
       }}
     >
       {children}
