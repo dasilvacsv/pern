@@ -36,7 +36,6 @@ export function AuthProvider({ children }) {
   const signin = async (data) => {
     try {
       const res = await axios.post("/signin", data);
-      console.log(res.data);
       setUser(res.data);
       setIsAuth(true);
 
@@ -66,7 +65,6 @@ export function AuthProvider({ children }) {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
         setIsAuth(false);
         setUser(null);
         setLoading(false);

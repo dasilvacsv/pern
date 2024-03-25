@@ -4,7 +4,6 @@ import { Card } from "./../components/ui";
 
 function homepage() {
   const data = useAuth()
-  console.log(data)
   return (
     <div>
       <Card>

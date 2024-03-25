@@ -1,7 +1,7 @@
 import app from "./app.js";
-import { pool } from "./db.js";
+import { PORT,  } from "./config.js";
 
 
-app.listen(80, '0.0.0.0', () => {
-    console.log('Server is running on localhost');
+app.listen(PORT, () => {
+    console.log(`Server is running in port ${PORT}`);
 });

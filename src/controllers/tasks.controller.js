@@ -2,7 +2,6 @@ import { pool } from "../db.js";
 
 
 export const getAllTasks = async (req, res, next) => {
-  console.log(req.userId);
   const result = await pool.query("SELECT * FROM task WHERE user_id = $1", [req.userId]);
   return res.json(result.rows);
 };
@@ -59,7 +58,6 @@ export const deleteTask = async (req, res) => {
     "DELETE FROM task WHERE id = $1 RETURNING *",
     [req.params.id]
   );
-  console.log(result);
   if (result.rowCount === 0) {
     return res.status(404).json({ message: "Tarea no encontrada" });
   }
