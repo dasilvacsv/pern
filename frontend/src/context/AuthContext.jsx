@@ -72,6 +72,16 @@ export function AuthProvider({ children }) {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    if (errors) {
+      const timeout = setTimeout(() => {
+        setErrors(null);
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [errors]);
+
   return (
     <AuthContext.Provider
       value={{
