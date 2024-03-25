@@ -19,7 +19,7 @@ function RegisterPage() {
   const onSubmit = async (data) => {
     const user = await signup(data)
     if (user !== false) {
-      navigate('/profile')
+      navigate('/tasks')
     }
   };
   return (
@@ -46,7 +46,7 @@ function RegisterPage() {
             })}
             placeholder="Enter your Username"
           />
-          {errors.name && <p className="text-red-500">Name is required</p>}
+          {errors.username && <p className="text-red-500">Username is required</p>}
           <Label htmlFor="email">
             Email
           </Label>
